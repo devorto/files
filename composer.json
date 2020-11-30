@@ -1,0 +1,22 @@
+{
+    "name": "devorto/images",
+    "description": "Defines the way images are being handled within an application.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Devorto",
+            "email": "info@devorto.com",
+            "role": "Owner",
+            "homepage": "https://www.devorto.com/"
+        }
+    ],
+    "require": {
+        "devorto/universally-unique-identifier": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Devorto\\Images\\": "src"
+        }
+    }
+}
