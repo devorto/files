@@ -1,6 +1,6 @@
 {
-    "name": "devorto/images",
-    "description": "Defines the way images are being handled within an application.",
+    "name": "devorto/files",
+    "description": "Defines the way files are being handled within an application.",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -12,11 +12,12 @@
         }
     ],
     "require": {
-        "devorto/universally-unique-identifier": "^1.0.0"
+        "php": "^7.4",
+        "ext-fileinfo": "*"
     },
     "autoload": {
         "psr-4": {
-            "Devorto\\Images\\": "src"
+            "Devorto\\Files\\": "src"
         }
     }
 }

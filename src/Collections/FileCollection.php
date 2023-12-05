@@ -1,21 +1,19 @@
 <?php
 
-namespace Devorto\Images\Collections;
+namespace Devorto\Files\Collections;
 
 use ArrayAccess;
-use Devorto\Images\Entities\Image;
+use Devorto\Files\Entities\File;
 use InvalidArgumentException;
 use Iterator;
 
 /**
- * Class ImageList
- *
- * @package Devorto\Images\Collections
+ * Collection object containing the files.
  */
-class ImageCollection implements ArrayAccess, Iterator
+class FileCollection implements ArrayAccess, Iterator
 {
     /**
-     * @var Image[]
+     * @var File[]
      */
     protected array $images = [];
 
@@ -74,8 +72,8 @@ class ImageCollection implements ArrayAccess, Iterator
      */
     public function offsetSet($offset, $value)
     {
-        if (!($value instanceof Image)) {
-            throw new InvalidArgumentException('$value is not an instanceof ' . Image::class);
+        if (!($value instanceof File)) {
+            throw new InvalidArgumentException('$value is not an instanceof ' . File::class);
         }
 
         $this->images[(string)$value->getUuid()] = $value;
