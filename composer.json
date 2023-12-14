@@ -13,7 +13,8 @@
     ],
     "require": {
         "php": "^7.4",
-        "ext-fileinfo": "*"
+        "ext-fileinfo": "*",
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {

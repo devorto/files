@@ -5,11 +5,13 @@ namespace Devorto\Files\Entities;
 use DateTimeInterface;
 use finfo;
 use InvalidArgumentException;
+use JsonSerializable;
+use stdClass;
 
 /**
  * Entity containing the data.
  */
-class File
+class File implements JsonSerializable
 {
     /**
      * @var string|null The ID for this file, can be an integer from database or uuid or something else unique.
@@ -214,5 +216,33 @@ class File
         }
 
         return $this;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     *
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4
+     */
+    public function jsonSerialize()
+    {
+        $obj = new stdClass();
+        $obj->id = $this->id;
+        $obj->sha1 = $this->sha1;
+        $obj->name = $this->name;
+        $obj->mimeType = $this->mimeType;
+        $obj->width = $this->width;
+        $obj->height = $this->height;
+        $obj->blob = $this->blob;
+        $obj->created = empty($this->created)
+            ? null
+            : $this->created->format(DateTimeInterface::ATOM);
+        $obj->lastModified = empty($this->lastModified)
+            ? null
+            : $this->lastModified->format(DateTimeInterface::ATOM);
+
+        return $obj;
     }
 }
