@@ -96,11 +96,11 @@ class File implements JsonSerializable
             return null;
         }
 
-        $image = new static();
-        $image->setBlob($blob);
-        $image->setName(basename($path));
+        $file = new static();
+        $file->setBlob($blob);
+        $file->setName(basename($path));
 
-        return $image;
+        return $file;
     }
 
     /**
@@ -207,7 +207,7 @@ class File implements JsonSerializable
         $this->sha1 = sha1($blob);
         $info = new finfo();
         $this->mimeType = $info->buffer($blob, FILEINFO_MIME_TYPE);
-        if (substr($this->mimeType, 0, 6) === 'image/') {
+        if (str_starts_with($this->mimeType, 'image/')) {
             $sizes = getimagesizefromstring($this->blob);
             if (!empty($sizes)) {
                 $this->width = $sizes[0];
@@ -222,11 +222,11 @@ class File implements JsonSerializable
      * Specify data which should be serialized to JSON
      *
      * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
-     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * @return stdClass data which can be serialized by <b>json_encode</b>,
      * which is a value of any type other than a resource.
      * @since 5.4
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): stdClass
     {
         $obj = new stdClass();
         $obj->id = $this->id;

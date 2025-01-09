@@ -2,7 +2,6 @@
 
 namespace Devorto\Files\Repositories;
 
-use Devorto\Files\Collections\FileCollection;
 use Devorto\Files\Entities\File;
 
 /**
@@ -31,15 +30,6 @@ interface Files
      * @return File|null
      */
     public function getBySha1(string $sha1, bool $loadBlob = false): ?File;
-
-    /**
-     * Get all files.
-     *
-     * @param bool $loadBlob
-     *
-     * @return FileCollection
-     */
-    public function getAll(bool $loadBlob = false): FileCollection;
 
     /**
      * Saves object, after save a new object is given back including created/last modified etc.
